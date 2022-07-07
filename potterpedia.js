@@ -1,21 +1,19 @@
-const inputBuscador = document.getElementById ('buscador');
 
-let estudiantes = [];
+const barraDeBusqueda = document.getElementById ('buscador');
+const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
+let hpEstudiantes = [];
 
 const cargarEstudiantes = async () => {
 
     try {
 
-        const respuesta = await fetch('http://hp-api.herokuapp.com/api/characters/students');
+        const respuesta = await fetch('http://hp-api.herokuapp.com/api/characters/students'); 
         console.log(respuesta);
 
         if (respuesta.status === 200) {
-            const datos = await respuesta.json();
-            let estudiantes = '';
-            datos.forEach(estudiante => {
-                console.log(estudiante);
-                estudiantes += `<h1>${estudiante}</h1>`;
-            });
+            hpEstudiantes = await respuesta.json();
+            mostrarEstudiantes(hpEstudiantes);
+            console.log(hpEstudiantes);
 
         }else if (respuesta.status === 404) {
             console.log('La pagina no funciona');
@@ -30,15 +28,33 @@ const cargarEstudiantes = async () => {
     
 }
 
-
+/*const mostrarEstudiantes = (estudiantes) => {
+    const cromo = estudiantes
+        .map((estudiante) => {
+            return `
+            <li class="estudiante">
+                <h2>${estudiante.name}</h2>
+                <p>House: ${estudiante.house}</p>
+                <p>Fecha de Nacimiento: ${estudiante.dateOfBirth}</p>
+                <img src="${estudiante.image}"></img>
+            </li>
+        `;
+        })
+        .join('');
+    listaDeEstudiantes.innerHTML = cromo;
+};*/
 
 cargarEstudiantes();
 
-inputBuscador.addEventListener('keyup', contenidoDelBuscador =>{
-    let texto = contenidoDelBuscador.target.value;
-    const filtrarEstudiantes = estudiantes.filter (estudiante => {
-        return estudiante.name.contain(searchString)
-    })
+barraDeBusqueda.addEventListener ('keyup', (contenidoDeLaBarraDeBusqueda) => {
+    const cadenaDeBusqueda = contenidoDeLaBarraDeBusqueda.target.value.toLowerCase();
+    console.log(cadenaDeBusqueda);
+    const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
+        return (
+            estudiante.name.toLowerCase().includes(cadenaDeBusqueda)
+            );
+        });
     console.log(filtrarEstudiantes);
-})
+});
+
 
