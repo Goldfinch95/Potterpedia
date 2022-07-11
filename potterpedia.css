@@ -140,3 +140,39 @@ button:hover{
     outline: none;
     }
 }
+
+#listaDeEstudiantes {
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 20px;
+}
+
+.estudiante {
+    list-style-type: none;
+    background-color: #eaeaea;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        'name image'
+        'house image';
+    text-align: left;
+}
+
+.estudiante > h2 {
+    grid-area: name;
+    margin-bottom: 0px;
+}
+
+.estudiante > p {
+    grid-area: house;
+    margin: 0;
+    margin-top: -18px;
+}
+
+.estudiante > img {
+    max-height: 100px;
+    grid-area: image;
+}

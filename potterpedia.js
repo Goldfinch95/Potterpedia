@@ -1,8 +1,10 @@
-
+const centro = document.getElementById('centro');
 const formulario = document.getElementById ('buscador');
 const botonBuscar = document.getElementById ('buscar');
 const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
+
 let hpEstudiantes = [];
+let presionarBuscar = false;
 
 const cargarEstudiantes = async () => {
 
@@ -28,8 +30,7 @@ const cargarEstudiantes = async () => {
     
 }
 
-/*const mostrarEstudiantes = (estudiantes) => {
-
+const mostrarEstudiantes = (estudiantes) => {
     const cromo = estudiantes
         .map((estudiante) => {
             return `
@@ -43,20 +44,24 @@ const cargarEstudiantes = async () => {
         })
         .join('');
     listaDeEstudiantes.innerHTML = cromo;
-};*/
-
-
+};
 
 cargarEstudiantes();
-
 
 botonBuscar.addEventListener('click', (buscar) =>{
     const texto = formulario.value.toLowerCase();
     const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
         return (
-            estudiante.name.toLowerCase().includes(texto)
-            );
+            estudiante.name.toLowerCase().includes(texto));
         });
     console.log(filtrarEstudiantes);
+    if (presionarBuscar == false){
+        centro.style.display = 'none';
+        presionarBuscar = true;
+        mostrarEstudiantes(filtrarEstudiantes);
+    }
+    else{
+        centro.style.display = 'flex';
+        presionarBuscar = false;
+    }
 });
-
