@@ -1,12 +1,13 @@
+import { hpEstudiantes } from "./estudiantes.js";
+
 const centro = document.getElementById('centro');
 const formulario = document.getElementById ('buscador');
 const botonBuscar = document.getElementById ('buscar');
 const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
 
-let hpEstudiantes = [];
 let presionarBuscar = false;
 
-const cargarEstudiantes = async () => {
+/*const cargarEstudiantes = async () => {
 
     try {
 
@@ -28,7 +29,7 @@ const cargarEstudiantes = async () => {
         console.log(error);
     }
     
-}
+}*/
 
 const mostrarEstudiantes = (estudiantes) => {
     const cromo = estudiantes
@@ -46,7 +47,7 @@ const mostrarEstudiantes = (estudiantes) => {
     listaDeEstudiantes.innerHTML = cromo;
 };
 
-cargarEstudiantes();
+//cargarEstudiantes();//
 
 botonBuscar.addEventListener('click', (buscar) =>{
     const texto = formulario.value.toLowerCase();
