@@ -1,5 +1,6 @@
 
-const barraDeBusqueda = document.getElementById ('buscador');
+const formulario = document.getElementById ('buscador');
+const botonBuscar = document.getElementById ('buscar');
 const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
 let hpEstudiantes = [];
 
@@ -11,8 +12,7 @@ const cargarEstudiantes = async () => {
         console.log(respuesta);
 
         if (respuesta.status === 200) {
-            hpEstudiantes = await respuesta.json();
-            mostrarEstudiantes(hpEstudiantes);
+            hpEstudiantes = await respuesta.json();//armar un archivo datos.json para copiar y pegar los datos de la api
             console.log(hpEstudiantes);
 
         }else if (respuesta.status === 404) {
@@ -29,6 +29,7 @@ const cargarEstudiantes = async () => {
 }
 
 /*const mostrarEstudiantes = (estudiantes) => {
+
     const cromo = estudiantes
         .map((estudiante) => {
             return `
@@ -44,17 +45,18 @@ const cargarEstudiantes = async () => {
     listaDeEstudiantes.innerHTML = cromo;
 };*/
 
+
+
 cargarEstudiantes();
 
-barraDeBusqueda.addEventListener ('keyup', (contenidoDeLaBarraDeBusqueda) => {
-    const cadenaDeBusqueda = contenidoDeLaBarraDeBusqueda.target.value.toLowerCase();
-    console.log(cadenaDeBusqueda);
+
+botonBuscar.addEventListener('click', (buscar) =>{
+    const texto = formulario.value.toLowerCase();
     const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
         return (
-            estudiante.name.toLowerCase().includes(cadenaDeBusqueda)
+            estudiante.name.toLowerCase().includes(texto)
             );
         });
     console.log(filtrarEstudiantes);
 });
-
 
