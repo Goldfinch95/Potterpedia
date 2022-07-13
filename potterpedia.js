@@ -1,9 +1,10 @@
 import { hpEstudiantes } from "./estudiantes.js";
 
 const centro = document.getElementById('centro');
-const cromo = document.getElementById ('cromo')
 const formulario = document.getElementById ('buscador');
 const botonBuscar = document.getElementById ('buscar');
+const cromo = document.getElementById ('cromo');
+const imagenDelCromo = document.getElementById ('imagen');
 const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
 
 let presionarBuscar = false;
@@ -32,16 +33,10 @@ let presionarBuscar = false;
     
 }*/
 
-/*const mostrarEstudiantes = (estudiante) => {
-    const cromo = 
-    `<li class="estudiante">
-    <h2>${estudiante.name}</h2>
-    <p>House: ${estudiante.house}</p>
-    <p>Fecha de Nacimiento: ${estudiante.dateOfBirth}</p>
-    <img src="${estudiante.image}"></img>
-    </li>`
-    listaDeEstudiantes.innerHTML = cromo;
-};*/
+const mostrarEstudiantes = (estudiante) => {
+    const imagen = `<li><img src="${estudiante.image}"></img></li>`
+    imagenDelCromo.innerHTML = imagen;
+};
 
 //cargarEstudiantes();//
 
@@ -64,3 +59,14 @@ botonBuscar.addEventListener('click', (buscar) =>{
         presionarBuscar = false;
     }
 });
+
+/*const mostrarEstudiantes = (estudiante) => {
+    const cromo = 
+    `<li class="estudiante">
+    <h2>${estudiante.name}</h2>
+    <p>House: ${estudiante.house}</p>
+    <p>Fecha de Nacimiento: ${estudiante.dateOfBirth}</p>
+    <img src="${estudiante.image}"></img>
+    </li>`
+    listaDeEstudiantes.innerHTML = cromo;
+};*/

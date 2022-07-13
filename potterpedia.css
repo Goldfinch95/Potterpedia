@@ -91,7 +91,6 @@ button:hover{
 
 .cromo{
     display: none;
-    position: absolute;
     background-color: transparent;
     width: 500px;
     height: 400px;
@@ -133,17 +132,14 @@ button:hover{
     -o-border-radius: 16px;
 }
 
-.frente-del-cromo{
-    z-index: 10;
-}
-.frente-del-cromo__imagen{
+#imagen{
+    display: flex;
     position: absolute;
     z-index: -1;
-    width: 50%;
-    left: 120px;
-    top: 140px;
-    text-align: center;
-    justify-content: center;
+    width: 210px;;
+    top: 119px;
+    left: 140px;
+    object-fit: cover;
 }
 
 .reverso-del-cromo{
@@ -205,38 +201,4 @@ button:hover{
     }
 }
 
-#listaDeEstudiantes {
-    padding-inline-start: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap: 20px;
-}
 
-.estudiante {
-    list-style-type: none;
-    background-color: #eaeaea;
-    border-radius: 3px;
-    padding: 10px 20px;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas:
-        'name image'
-        'house image';
-    text-align: left;
-}
-
-.estudiante > h2 {
-    grid-area: name;
-    margin-bottom: 0px;
-}
-
-.estudiante > p {
-    grid-area: house;
-    margin: 0;
-    margin-top: -18px;
-}
-
-.estudiante > img {
-    max-height: 100px;
-    grid-area: image;
-}
