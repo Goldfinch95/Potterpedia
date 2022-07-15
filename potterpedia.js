@@ -5,7 +5,8 @@ const formulario = document.getElementById ('buscador');
 const botonBuscar = document.getElementById ('buscar');
 const cromo = document.getElementById ('cromo');
 const imagenDelCromo = document.getElementById ('imagen');
-const listaDeEstudiantes = document.getElementById ('listaDeEstudiantes');
+const nombreDelEstudiante = document.getElementById ('nombre');
+const datosdelCromo = document.getElementById ('datos');
 
 let presionarBuscar = false;
 
@@ -35,7 +36,19 @@ let presionarBuscar = false;
 
 const mostrarEstudiantes = (estudiante) => {
     const imagen = `<li><img src="${estudiante.image}"></img></li>`
+    const nombre = `<ul>${estudiante.name}</ul>`
+    const datos = `<ul>
+    <h2>${estudiante.name}</h2>
+    <p> Date of birth: ${estudiante.dateOfBirth}</p>
+    <p> Hogwarts House: ${estudiante.house}</p>
+    <p>Blood type: ${estudiante.ancestry}</p>
+    <p>Wand: ${estudiante.wand.wood}, ${estudiante.wand.core}, ${estudiante.wand.length}</p>
+    <p>Patronus: ${estudiante.patronus}</p>
+    </ul>`
+
     imagenDelCromo.innerHTML = imagen;
+    nombreDelEstudiante.innerHTML = nombre;
+    datosdelCromo.innerHTML = datos;
 };
 
 //cargarEstudiantes();//
@@ -59,14 +72,3 @@ botonBuscar.addEventListener('click', (buscar) =>{
         presionarBuscar = false;
     }
 });
-
-/*const mostrarEstudiantes = (estudiante) => {
-    const cromo = 
-    `<li class="estudiante">
-    <h2>${estudiante.name}</h2>
-    <p>House: ${estudiante.house}</p>
-    <p>Fecha de Nacimiento: ${estudiante.dateOfBirth}</p>
-    <img src="${estudiante.image}"></img>
-    </li>`
-    listaDeEstudiantes.innerHTML = cromo;
-};*/
