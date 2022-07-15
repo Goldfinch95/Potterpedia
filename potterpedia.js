@@ -2,6 +2,7 @@ import { hpEstudiantes } from "./estudiantes.js";
 
 const centro = document.getElementById('centro');
 const formulario = document.getElementById ('buscador');
+const resultados = document.getElementById('autocompletar');
 const botonBuscar = document.getElementById ('buscar');
 const cromo = document.getElementById ('cromo');
 const imagenDelCromo = document.getElementById ('imagen');
@@ -34,6 +35,8 @@ let presionarBuscar = false;
     
 }*/
 
+const listaDeEstudiantes = (estudiante) => {}
+
 const mostrarEstudiantes = (estudiante) => {
     const imagen = `<li><img src="${estudiante.image}"></img></li>`
     const nombre = `<ul>${estudiante.name}</ul>`
@@ -53,22 +56,38 @@ const mostrarEstudiantes = (estudiante) => {
 
 //cargarEstudiantes();//
 
+
 botonBuscar.addEventListener('click', (buscar) =>{
     const texto = formulario.value.toLowerCase();
-    const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
+    if (texto.length > 0 && presionarBuscar == false) {
+        const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
         return (
             estudiante.name.toLowerCase().includes(texto));
         });
-    console.log(filtrarEstudiantes);
-    if (presionarBuscar == false){
+        resultados.innerHTML = '';
+        //arreglar el problema que se presenta aca, tu intencion es desplegar una barra de autocompletado de nombres que el usuario ingresa letra por letra.
+        const nombre = (nombres)=>{
+            let nombres = hpEstudiantes.map((estudiante)=>{
+                let estudiante = estudiante.name;
+                resultados.innerHTML += `<li>${estudiante}</li>`
+            })
+        }
+        resultados.style.display = 'none';
         centro.style.display = 'none';
         cromo.style.display = 'flex';
         presionarBuscar = true;
         mostrarEstudiantes(filtrarEstudiantes[0]);
     }
     else{
-        centro.style.display = 'flex';
-        cromo.style.display = 'none';
-        presionarBuscar = false;
+        let noHayEstudiante = "no pusiste un estudiante";
+        if(texto.length == 0){
+            resultados.style.display = 'flex';
+            resultados.innerHTML = noHayEstudiante;
+        }
+        else{
+            resultados.style.display ='flex';
+            centro.style.display = 'flex';
+            cromo.style.display = 'none';
+            presionarBuscar = false;}
     }
 });
