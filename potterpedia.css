@@ -44,10 +44,9 @@
 .contenedor__Buscador{
     position: relative;
     width: 100%;
-    margin-top: -100px;
 }
 
-.buscador{
+.contenedor__Buscador .buscador {
     width: 100%;
     padding: 13px 45px 13px 60px;
     background-color: rgb(231, 229, 229);
@@ -55,28 +54,23 @@
     border: 1px solid #ccc;
     outline: none;
     font-size: 16px;
+    -webkit-border-radius:30px;
+    -moz-border-radius:30px;
+    -ms-border-radius:30px;
+    -o-border-radius:30px;
 }
 
-.autocompletar-resultados{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(231, 229, 229);
+.buscador input{
+    height: 30px;
     width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 45px 13px 60px;
+    font-size: 18px;
 }
 
-
-.autocompletar-resultados li{
-    color: #48438f;
-    padding: 15px;
-    width: calc(100% - 30px);
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.icono{
+.contenedor__Buscador .icono{
     position: absolute;
     top: 0;
     width: 100%;
@@ -85,6 +79,25 @@
     justify-content: space-between;
     align-items: center;
     pointer-events: none;
+}
+
+.buscador .autocompletar{
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 8px;
+    background-color: rgb(231, 229, 229);
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+#autocompletar{
+    list-style: none;
+    padding: 8px 12px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .boton{

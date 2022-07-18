@@ -14,12 +14,17 @@
         <div class="centro" id="centro">
             <h1 class="titulo">Potterpedia</h1>
             <div class="contenedor__Buscador">
-                <input type="text" class="buscador" id="buscador" placeholder="Find your wizard...">
-                <div class="icono">
-                    <div><img src="search.png"></div>
+                <div class="buscador">
+                    <input type="text" id="buscador" placeholder="Find your wizard...">
+                    <div class="autocompletar">
+                    <ul id="autocompletar"></ul>
                 </div>
-                <ul id="autocompletar" class="autocompletar-resultados">
-                </ul>
+            </div>
+                <div class="icono">
+                    <div>
+                        <img src="search.png">
+                    </div>
+                </div>
             </div>
             <div class="boton">
                 <button id="buscar">Buscar</button>

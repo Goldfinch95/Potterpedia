@@ -11,6 +11,7 @@ const datosdelCromo = document.getElementById ('datos');
 
 let presionarBuscar = false;
 
+
 /*const cargarEstudiantes = async () => {
 
     try {
@@ -65,6 +66,12 @@ formulario.addEventListener('input', (mostrarCoincidencias) =>{
     const mapearEstudiantes = filtrarEstudiantes.map(estudiante =>`<li>${estudiante.name}</li>`);
     resultados.innerHTML = mapearEstudiantes;
 } );
+
+resultados.addEventListener('click',(seleccionar)=>{
+    if(seleccionar.target && seleccionar.target.nodeName == 'li'){
+        formulario.value = seleccionar.target.innerHTML;
+    }
+})
 
 botonBuscar.addEventListener('click', (buscar) =>{
     const texto = formulario.value.toLowerCase();
