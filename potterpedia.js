@@ -35,7 +35,6 @@ let presionarBuscar = false;
     
 }*/
 
-const listaDeEstudiantes = (estudiante) => {}
 
 const mostrarEstudiantes = (estudiante) => {
     const imagen = `<li><img src="${estudiante.image}"></img></li>`
@@ -54,8 +53,18 @@ const mostrarEstudiantes = (estudiante) => {
     datosdelCromo.innerHTML = datos;
 };
 
+
 //cargarEstudiantes();//
 
+formulario.addEventListener('input', (mostrarCoincidencias) =>{
+    const texto = formulario.value.toLowerCase();
+    const filtrarEstudiantes = hpEstudiantes.filter ((estudiante)=>{
+        return(
+            estudiante.name.toLowerCase().includes(texto));
+    })
+    const mapearEstudiantes = filtrarEstudiantes.map(estudiante =>`<li>${estudiante.name}</li>`);
+    resultados.innerHTML = mapearEstudiantes;
+} );
 
 botonBuscar.addEventListener('click', (buscar) =>{
     const texto = formulario.value.toLowerCase();
@@ -64,15 +73,7 @@ botonBuscar.addEventListener('click', (buscar) =>{
         return (
             estudiante.name.toLowerCase().includes(texto));
         });
-        resultados.innerHTML = '';
-        //arreglar el problema que se presenta aca, tu intencion es desplegar una barra de autocompletado de nombres que el usuario ingresa letra por letra.
-        const nombre = (nombres)=>{
-            let nombres = hpEstudiantes.map((estudiante)=>{
-                let estudiante = estudiante.name;
-                resultados.innerHTML += `<li>${estudiante}</li>`
-            })
-        }
-        resultados.style.display = 'none';
+        resultados.style.display = 'flex';
         centro.style.display = 'none';
         cromo.style.display = 'flex';
         presionarBuscar = true;

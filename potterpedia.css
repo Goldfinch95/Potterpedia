@@ -58,19 +58,22 @@
 }
 
 .autocompletar-resultados{
-    display: none;
-    width: 100%;
-    padding: 13px 45px 13px 60px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     background-color: rgb(231, 229, 229);
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 16px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
+
 .autocompletar-resultados li{
-    padding-top: 7px;
-    list-style: none;
+    color: #48438f;
+    padding: 15px;
+    width: calc(100% - 30px);
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .icono{
@@ -135,9 +138,13 @@ button:hover{
     -o-transform: rotateY(180deg);
 }
 
+.cromo:hover #imagen{
+    display: none;
+}
 .frente-del-cromo,
 .reverso-del-cromo{
     position: absolute;
+    display: flex;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -154,8 +161,6 @@ button:hover{
 
 #nombre{
     position: absolute;
-    top: 84%;
-    left: 42%;
     text-align: center;
 }
 
@@ -169,8 +174,7 @@ button:hover{
 
 #datos{
     position: absolute;
-    top: 195px;
-    left: 145px;
+    z-index: 10;
     font-size: 14px;
     color: #ffff;
 }
