@@ -1,101 +1,68 @@
 import { hpEstudiantes } from "./estudiantes.js";
 
-const centro = document.getElementById('centro');
-const formulario = document.getElementById ('buscador');
-const resultados = document.getElementById('autocompletar');
-const botonBuscar = document.getElementById ('buscar');
-const cromo = document.getElementById ('cromo');
-const imagenDelCromo = document.getElementById ('imagen');
-const nombreDelEstudiante = document.getElementById ('nombre');
-const datosdelCromo = document.getElementById ('datos');
+const elInput = document.querySelector ("#buscador-input");
 
-let presionarBuscar = false;
+let nombreDeLosEstudiantes = [];
 
+const obtenerEstudiantes = () => {
+    const data = hpEstudiantes;
 
-/*const cargarEstudiantes = async () => {
+    nombreDeLosEstudiantes = data.map((estudiante) => {
+        return estudiante.name;
+    });
+}
 
-    try {
+const EntradaDeTexto = () => {
+    removerListaAutodesplegable();
 
-        const respuesta = await fetch('http://hp-api.herokuapp.com/api/characters/students'); 
-        console.log(respuesta);
+    const valor = elInput.value.toLowerCase();
 
-        if (respuesta.status === 200) {
-            hpEstudiantes = await respuesta.json();//armar un archivo datos.json para copiar y pegar los datos de la api
-            console.log(hpEstudiantes);
+    if(valor.length === 0) return;
 
-        }else if (respuesta.status === 404) {
-            console.log('La pagina no funciona');
-
-        } else {
-            console.log('Error desconocido');
-        }
-
-    } catch (error) {
-        console.log(error);
-    }
+    const nombresFiltrados = [];
     
-}*/
+    nombreDeLosEstudiantes.forEach((nombreDelEstudiante) => {
+        if (nombreDelEstudiante.substring(0, valor.length).toLowerCase() === valor)
+        nombresFiltrados.push(nombreDelEstudiante);
+    });
+
+    listaAutodesplegable(nombresFiltrados);
+}
+
+const listaAutodesplegable = (lista) => {
+    const elLista = document.createElement("ul");
+    elLista.className = "buscador-lista";
+    elLista.id = "buscador-lista";
+
+    lista.forEach((nombreDelEstudiante) => {
+        const itemLista = document.createElement("li");
+
+        const botonEstudiante = document.createElement("button");
+        botonEstudiante.innerHTML = nombreDelEstudiante;
+        botonEstudiante.addEventListener("click", clickEnElBotonEstudiante )
+        itemLista.appendChild(botonEstudiante);
+
+        elLista.appendChild(itemLista);
+    });
+
+    document.querySelector("#contenedor-buscador").appendChild(elLista);
+}
+
+const removerListaAutodesplegable = () => {
+    const elLista = document.querySelector("#buscador-lista");
+    if(elLista) elLista.remove();
+}
+
+const clickEnElBotonEstudiante = (e) =>{
+    e.preventDefault();
+
+    const elBoton = e.target;
+    elInput.value = elBoton.innerHTML;
+
+    removerListaAutodesplegable();
+}
 
 
-const mostrarEstudiantes = (estudiante) => {
-    const imagen = `<li><img src="${estudiante.image}"></img></li>`
-    const nombre = `<ul>${estudiante.name}</ul>`
-    const datos = `<ul>
-    <h2>${estudiante.name}</h2>
-    <p> Date of birth: ${estudiante.dateOfBirth}</p>
-    <p> Hogwarts House: ${estudiante.house}</p>
-    <p>Blood type: ${estudiante.ancestry}</p>
-    <p>Wand: ${estudiante.wand.wood}, ${estudiante.wand.core}, ${estudiante.wand.length}</p>
-    <p>Patronus: ${estudiante.patronus}</p>
-    </ul>`
+obtenerEstudiantes();
 
-    imagenDelCromo.innerHTML = imagen;
-    nombreDelEstudiante.innerHTML = nombre;
-    datosdelCromo.innerHTML = datos;
-};
-
-
-//cargarEstudiantes();//
-
-formulario.addEventListener('input', (mostrarCoincidencias) =>{
-    const texto = formulario.value.toLowerCase();
-    const filtrarEstudiantes = hpEstudiantes.filter ((estudiante)=>{
-        return(
-            estudiante.name.toLowerCase().includes(texto));
-    })
-    const mapearEstudiantes = filtrarEstudiantes.map(estudiante =>`<li>${estudiante.name}</li>`);
-    resultados.innerHTML = mapearEstudiantes;
-} );
-
-resultados.addEventListener('click',(seleccionar)=>{
-    if(seleccionar.target && seleccionar.target.nodeName == 'li'){
-        formulario.value = seleccionar.target.innerHTML;
-    }
-})
-
-botonBuscar.addEventListener('click', (buscar) =>{
-    const texto = formulario.value.toLowerCase();
-    if (texto.length > 0 && presionarBuscar == false) {
-        const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
-        return (
-            estudiante.name.toLowerCase().includes(texto));
-        });
-        resultados.style.display = 'flex';
-        centro.style.display = 'none';
-        cromo.style.display = 'flex';
-        presionarBuscar = true;
-        mostrarEstudiantes(filtrarEstudiantes[0]);
-    }
-    else{
-        let noHayEstudiante = "no pusiste un estudiante";
-        if(texto.length == 0){
-            resultados.style.display = 'flex';
-            resultados.innerHTML = noHayEstudiante;
-        }
-        else{
-            resultados.style.display ='flex';
-            centro.style.display = 'flex';
-            cromo.style.display = 'none';
-            presionarBuscar = false;}
-    }
-});
+elInput.addEventListener("input", EntradaDeTexto);

@@ -5,32 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="potterpedia.css">
     <title>Potterpedia</title>
 </head>
 <body>
-    <div class="contenedor">
-        <div class="centro" id="centro">
+    <section>
+        <div id="centro" class="centro">
             <h1 class="titulo">Potterpedia</h1>
-            <div class="contenedor__Buscador">
-                <div class="buscador">
-                    <input type="text" id="buscador" placeholder="Find your wizard...">
-                    <div class="autocompletar">
-                    <ul id="autocompletar"></ul>
-                </div>
-            </div>
-                <div class="icono">
-                    <div>
-                        <img src="search.png">
+            <form action="" autocomplete="off">
+                <div id="contenedor-buscador" class="contenedor-buscador">
+                    <input id="buscador-input" class="buscador-input" type="text" placeholder="search your student">
+                    <div class="icono">
+                        <div><img src="search.png"></div>
                     </div>
                 </div>
-            </div>
-            <div class="boton">
-                <button id="buscar">Buscar</button>
-            </div>
+            </form>
+            <button class="btn-enviar" type="submit">Buscar</button>
         </div>
-        <div class="cromo" id="cromo">
+        <!--<div class="cromo" id="cromo">
             <div class="interior-del-cromo">
                 <div class="frente-del-cromo">
                     <ul id="nombre"></ul>
@@ -43,8 +35,8 @@
                     <ul class="datos" id="datos"></ul>
                 </div>   
             </div>
-        </div>
-    </div>
+        </div>-->
+    </section>
     <script src="potterpedia.js" type="module"></script>
 </body>
 </html>
