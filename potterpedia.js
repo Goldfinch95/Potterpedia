@@ -1,8 +1,10 @@
 import { hpEstudiantes } from "./estudiantes.js";
 
 const elInput = document.querySelector ("#buscador-input");
+const elBotonBuscar = document.querySelector ("#btn-enviar");
 
 let nombreDeLosEstudiantes = [];
+let presionarBuscar = false;
 
 const obtenerEstudiantes = () => {
     const data = hpEstudiantes;
@@ -62,7 +64,15 @@ const clickEnElBotonEstudiante = (e) =>{
     removerListaAutodesplegable();
 }
 
+const buscarEstudiante = () => {
+    const valor = elInput.value.toLowerCase();
+    if(valor.lenght > 0 && )
+}
 
 obtenerEstudiantes();
 
 elInput.addEventListener("input", EntradaDeTexto);
+
+elBotonBuscar.addEventListener ("click",buscarEstudiante);
+
+
