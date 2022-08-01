@@ -1,5 +1,6 @@
 import { hpEstudiantes } from "./estudiantes.js";
 
+const centro = document.querySelector("#centro");
 const elInput = document.querySelector ("#buscador-input");
 const elBotonBuscar = document.querySelector ("#btn-enviar");
 
@@ -66,13 +67,25 @@ const clickEnElBotonEstudiante = (e) =>{
 
 const buscarEstudiante = () => {
     const valor = elInput.value.toLowerCase();
-    if(valor.lenght > 0 && )
+    console.log(valor);
+    if (valor.lenght > 0 && presionarBuscar == false) {
+        const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
+            return (
+                estudiante.name.toLowerCase().includes(valor));
+        });
+        centro.style.display = "flex";
+        presionarBuscar = true;
+    }
+    else{
+        centro.style.display = "none";
+        presionarBuscar = false;
+    }
 }
 
 obtenerEstudiantes();
 
 elInput.addEventListener("input", EntradaDeTexto);
 
-elBotonBuscar.addEventListener ("click",buscarEstudiante);
+elBotonBuscar.addEventListener ("click", buscarEstudiante);
 
 
