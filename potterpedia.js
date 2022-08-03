@@ -3,6 +3,11 @@ import { hpEstudiantes } from "./estudiantes.js";
 const centro = document.querySelector("#centro");
 const elInput = document.querySelector ("#buscador-input");
 const elBotonBuscar = document.querySelector ("#btn-enviar");
+const elCromo = document.querySelector ("#cromo");
+const elImagen = document.querySelector ("#imagen");
+const elNombre = document.querySelector ("#nombre");
+const eldatos = document.querySelector ("#datos");
+
 
 let nombreDeLosEstudiantes = [];
 let presionarBuscar = false;
@@ -65,19 +70,38 @@ const clickEnElBotonEstudiante = (e) =>{
     removerListaAutodesplegable();
 }
 
+const mostrarCromo = (estudiante) => {
+    const imagen = `<li><img src="${estudiante.image}"></img></li>`
+    const nombre = `<ul>${estudiante.name}</ul>`
+    const datos = `<ul>
+    <h2>${estudiante.name}</h2>
+    <p> Date of birth: ${estudiante.dateOfBirth}</p>
+    <p> Hogwarts House: ${estudiante.house}</p>
+    <p>Blood type: ${estudiante.ancestry}</p>
+    <p>Wand: ${estudiante.wand.wood}, ${estudiante.wand.core}, ${estudiante.wand.length}</p>
+    <p>Patronus: ${estudiante.patronus}</p>
+    </ul>`
+
+    elImagen.innerHTML = imagen;
+    elNombre.innerHTML = nombre;
+    eldatos.innerHTML = datos;
+}
+
 const buscarEstudiante = () => {
     const valor = elInput.value.toLowerCase();
-    console.log(valor);
-    if (valor.lenght > 0 && presionarBuscar == false) {
+    if (valor.length > 0 && presionarBuscar == false) {
         const filtrarEstudiantes = hpEstudiantes.filter((estudiante) => {
             return (
                 estudiante.name.toLowerCase().includes(valor));
         });
-        centro.style.display = "flex";
+        centro.style.display = "none";
+        elCromo.style.display = "flex";
         presionarBuscar = true;
+        mostrarCromo(filtrarEstudiantes[0]);
     }
     else{
-        centro.style.display = "none";
+        centro.style.display = "flex";
+        elCromo.style.display = "none";
         presionarBuscar = false;
     }
 }
@@ -87,5 +111,4 @@ obtenerEstudiantes();
 elInput.addEventListener("input", EntradaDeTexto);
 
 elBotonBuscar.addEventListener ("click", buscarEstudiante);
-
 
