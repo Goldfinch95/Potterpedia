@@ -145,15 +145,19 @@ section .centro  button:hover{
 }
 
 section .cromo{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    display: none;
+    background-color: transparent;
+    width: 500px;
+    height: 700px;
+    perspective: 1000px;
 }
 
-.interior-del-cromo{
+section .cromo .interior-del-cromo{
     position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
     transition: transform 0.6s;
     -webkit-transition: transform 0.6s;
     -moz-transition: transform 0.6s;
@@ -162,7 +166,7 @@ section .cromo{
     transform-style: preserve-3d;
 }
 
-.cromo:hover .interior-del-cromo{
+section .cromo:hover .interior-del-cromo{
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
@@ -170,38 +174,42 @@ section .cromo{
     -o-transform: rotateY(180deg);
 }
 
-.cromo:hover #imagen{
-    display: none;
-}
-.frente-del-cromo,
-.reverso-del-cromo{
+
+section .cromo .interior-del-cromo .frente-del-cromo, .reverso-del-cromo{
     position: absolute;
-    display: flex;
+    width: 100%;
+    height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
+section .cromo .interior-del-cromo .frente-del-cromo .frente{
+    width: 500px;
+    margin-top: 13rem;
+}
 
 #imagen{
     position: absolute;
     z-index: -1;
-    width: 210px;;
-    top: 119px;
-    left: 140px;
-    object-fit: cover;
+    background-position: center;
 }
 
 #nombre{
-    position: absolute;
-    text-align: center;
+    color: red;
+    font-size: 15px;
 }
 
-.reverso-del-cromo{
+section .cromo .interior-del-cromo .reverso-del-cromo{
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
+}
+
+section .cromo .interior-del-cromo .reverso-del-cromo .reverso{
+    width: 500px;
+    margin-top: 13rem;
 }
 
 #datos{

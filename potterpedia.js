@@ -71,7 +71,7 @@ const clickEnElBotonEstudiante = (e) =>{
 }
 
 const mostrarCromo = (estudiante) => {
-    const imagen = `<li><img src="${estudiante.image}"></img></li>`
+    const imagen = `<ul><img src="${estudiante.image}"></img></ul>`
     const nombre = `<ul>${estudiante.name}</ul>`
     const datos = `<ul>
     <h2>${estudiante.name}</h2>
