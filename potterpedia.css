@@ -21,6 +21,7 @@ section{
     background-image: url(moonlight-Half-Moon-stars-clouds-space-clouds-night-1958833-wallhere.com.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 button{
