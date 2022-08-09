@@ -177,8 +177,9 @@ section .cromo:hover .interior-del-cromo{
 
 section .cromo .interior-del-cromo .frente-del-cromo, .reverso-del-cromo{
     position: absolute;
+    z-index: 50;
     width: 100%;
-    height: 100%;
+    height: 101%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -188,15 +189,22 @@ section .cromo .interior-del-cromo .frente-del-cromo .frente{
     margin-top: 13rem;
 }
 
-#imagen{
+section .cromo .interior-del-cromo .frente-del-cromo ul img{
     position: absolute;
+    width: 40%;
+    height: 40%;
+    top: 49%;
+    left: 30%;
     z-index: -1;
     background-position: center;
+    background-color: #ccc
 }
 
-#nombre{
-    color: red;
-    font-size: 15px;
+section .cromo .interior-del-cromo .frente-del-cromo #nombre{
+    display: flex;
+    justify-content: center;
+    margin-top: -63px;
+    color: #7e671a ;
 }
 
 section .cromo .interior-del-cromo .reverso-del-cromo{
@@ -215,6 +223,8 @@ section .cromo .interior-del-cromo .reverso-del-cromo .reverso{
 #datos{
     position: absolute;
     z-index: 10;
+    top: 59%;
+    left: 30%;
     font-size: 14px;
     color: #ffff;
 }
