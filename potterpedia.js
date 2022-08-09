@@ -3,6 +3,7 @@ import { hpEstudiantes } from "./estudiantes.js";
 const centro = document.querySelector("#centro");
 const elInput = document.querySelector ("#buscador-input");
 const elBotonBuscar = document.querySelector ("#btn-enviar");
+const elBotonVolver = document.querySelector("#btn-volver");
 const elCromo = document.querySelector ("#cromo");
 const elImagen = document.querySelector ("#imagen");
 const elNombre = document.querySelector ("#nombre");
@@ -11,6 +12,10 @@ const eldatos = document.querySelector ("#datos");
 
 let nombreDeLosEstudiantes = [];
 let presionarBuscar = false;
+
+elBotonVolver.style.display ="none";
+
+let presionarVolver = false;
 
 const obtenerEstudiantes = () => {
     const data = hpEstudiantes;
@@ -95,6 +100,7 @@ const buscarEstudiante = () => {
                 estudiante.name.toLowerCase().includes(valor));
         });
         centro.style.display = "none";
+        elBotonVolver.style.display = "flex";
         elCromo.style.display = "flex";
         presionarBuscar = true;
         mostrarCromo(filtrarEstudiantes[0]);
@@ -106,9 +112,26 @@ const buscarEstudiante = () => {
     }
 }
 
+const volverAlPrincipio = () => {
+    if(presionarVolver == false) {
+        centro.style.display = "flex";
+        elBotonVolver.style.display = "none";
+        elCromo.style.display = "none";
+        presionarVolver = true;
+        document.getElementById("buscador-input").value = '';
+    }
+    else {
+        centro.style.display = "none";
+        elCromo.style.display = "flex";
+        presionarVolver = false;
+    }
+}
+
 obtenerEstudiantes();
 
 elInput.addEventListener("input", EntradaDeTexto);
 
 elBotonBuscar.addEventListener ("click", buscarEstudiante);
+
+elBotonVolver.addEventListener("click", volverAlPrincipio);
 

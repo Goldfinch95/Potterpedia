@@ -144,6 +144,21 @@ section .centro  button:hover{
     border: 1px solid #555;
 }
 
+section .contenedor-btn{
+    display: flex;
+    position: absolute;
+    height: 20;
+    top: 12%;
+    left: 10%;
+    border: none;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+
 section .cromo{
     display: none;
     background-color: transparent;
